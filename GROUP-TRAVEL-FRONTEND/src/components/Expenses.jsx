@@ -53,7 +53,7 @@ const Expenses = ({ tripId }) => {
   useEffect(() => {
     const fetchTripMembers = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/trip-api/trip/${activeTripId}`);
+        const response = await axios.get(`${API_BASE_URL}/trip-api/trip/${activeTripId}`, getAuthConfig());
         setTripMembers(response.data.members || []);
         // Select all members by default
         setSelectedParticipants(response.data.members?.map((m) => m._id) || []);

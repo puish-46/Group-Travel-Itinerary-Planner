@@ -24,7 +24,7 @@ const Navbar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </div>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 font-extrabold text-sm sm:text-base hidden xs:block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300 font-extrabold text-sm sm:text-base block">
                 The Crew Canvas
               </span>
             </Link>
