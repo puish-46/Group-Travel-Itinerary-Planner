@@ -6,7 +6,7 @@ This is the frontend client codebase for **The Crew Canvas**, a collaborative tr
 
 ##  Deployed URL
 The client web app is deployed and running on **Vercel**:
-`https://group-travel-itinerary-planner-one.vercel.app/`
+`https://group-travel-itinerary-planner-one.vercel.app`
 
 ---
 ##  React Architecture & State Management
