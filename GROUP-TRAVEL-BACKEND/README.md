@@ -10,7 +10,7 @@ The backend is deployed and running on **Render**:
 
 ---
 
-## 🗺️ API Architecture
+##  API Architecture
 
 The backend operates as an Express application exposing HTTP/JSON endpoints. Database communication is structured using Mongoose models. Critical state operations are protected using JSON Web Tokens (JWT) verified via middleware.
 
