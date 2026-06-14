@@ -1,18 +1,12 @@
-# The Crew Canvas 🎨✈️
+# The Crew Canvas 
 
 > **Your Crew. Your Journey. One Canvas.**
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-blue)](https://react.dev/)
-[![Node.js](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-green)](https://nodejs.org/)
-[![Database](https://img.shields.io/badge/Database-MongoDB%20Atlas-emerald)](https://www.mongodb.com/cloud/atlas)
-[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS%20v4-blueviolet)](https://tailwindcss.com/)
 
 **The Crew Canvas** is a collaborative group travel planning platform built using the MERN stack. Designed specifically for groups and adventure squads, it turns the chaotic process of organizing trips into a clean, shared workspace. Plan routes, finalize details via group polls, split expenses, and share trip memories all on one dynamic canvas.
 
 ---
 
-## 🔗 Live Links
+##  Live Links
 
 *   **Frontend URL**: [https://group-travel-itinerary-planner-one.vercel.app/](https://group-travel-itinerary-planner-one.vercel.app/)
 *   **Backend URL**: [https://group-travel-itinerary-planner-plwh.onrender.com](https://group-travel-itinerary-planner-plwh.onrender.com)
@@ -20,16 +14,9 @@
 
 ---
 
-## 🗺️ Architecture Overview
+##  Architecture Overview
 
 The application follows a decoupled client-server architecture:
-
-```mermaid
-graph TD
-    A[React Client - Vite] <-->|HTTP / JSON + Bearer Token| B[Express.js server - Render]
-    B <-->|Mongoose ODM| C[MongoDB Atlas]
-    B <-->|Multer Uploader| D[Cloudinary Asset Management]
-```
 
 -   **Frontend**: React single page application built using Vite, styled with Tailwind CSS, utilizing Zustand for centralized authentication and trip state store.
 -   **Backend**: Node.js & Express REST API managing authorization middleware, group permission gates, and assets upload.
@@ -37,18 +24,18 @@ graph TD
 
 ---
 
-## ✨ Features
+##  Features
 
--   👥 **Crew Member Management**: Add trip members securely via email. Only the creator/organizer of the trip can add new members.
--   📅 **Shared Itineraries**: Create day-by-day itineraries, add activity timelines, and let group members coordinate schedules.
--   📊 **Group Polls**: Vote democratically on trip aspects such as accommodation, travel dates, or dining choices.
--   💰 **Expense Splitter**: Log joint expenses, select specific crew members to split with, and view calculated individual equal headshares automatically.
--   📸 **Shared Memory Board**: A shared trip gallery backed by Cloudinary where members can upload and view high-quality memories from their journeys.
--   🔒 **Granular Security**: Access tokens verify logins and protect critical routes so only authenticated creators or members can view/delete specific trip details.
+-    **Crew Member Management**: Add trip members securely via email. Only the creator/organizer of the trip can add new members.
+-    **Shared Itineraries**: Create day-by-day itineraries, add activity timelines, and let group members coordinate schedules.
+-    **Group Polls**: Vote democratically on trip aspects such as accommodation, travel dates, or dining choices.
+-    **Expense Splitter**: Log joint expenses, select specific crew members to split with, and view calculated individual equal headshares automatically.
+-    **Shared Memory Board**: A shared trip gallery backed by Cloudinary where members can upload and view high-quality memories from their journeys.
+-    **Granular Security**: Access tokens verify logins and protect critical routes so only authenticated creators or members can view/delete specific trip details.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 -   **React (Vite)**: Component-based UI rendering
@@ -69,36 +56,7 @@ graph TD
 
 ---
 
-## 📂 Folder Structure
-
-```
-GroupTravelItineraryPlanner/
-├── README.md                          # Main Root Documentation
-├── package.json
-├── GROUP-TRAVEL-BACKEND/              # Express API Server Codebase
-│   ├── APIs/                          # Express Router Controllers
-│   ├── Models/                        # Mongoose Schema Definitions
-│   ├── Middlewares/                   # Token Validation Interceptors
-│   ├── db.js                          # Database Connection Setup
-│   ├── server.js                      # Main App Server Bootstrapper
-│   ├── package.json
-│   └── README.md                      # Backend API Documentation
-└── GROUP-TRAVEL-FRONTEND/             # Vite + React Client Codebase
-    ├── public/
-    ├── src/
-    │   ├── components/                # View Screens & Interactive Layouts
-    │   ├── store/                     # Zustand State Stores
-    │   ├── App.jsx                    # Routing & Style Context Wrapper
-    │   ├── index.css                  # Tailwind Theme Variables & Directives
-    │   └── main.jsx                   # React Bootstrapper
-    ├── vercel.json                    # Single Page App rewrite config
-    ├── package.json
-    └── README.md                      # Frontend Client Documentation
-```
-
----
-
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 Ensure you have node installed:
@@ -149,7 +107,7 @@ Ensure you have node installed:
 
 ---
 
-## ⚙️ Environment Variables Summary
+##  Environment Variables Summary
 
 ### Backend Settings
 -   `PORT`: Port number the backend server listens on (e.g. `5000`).
@@ -162,7 +120,7 @@ Ensure you have node installed:
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 
 *Placeholders for upcoming application views:*
 
@@ -176,15 +134,11 @@ Ensure you have node installed:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
--   💬 **In-App Messaging**: Real-time canvas chat box for crew members to coordinate.
--   📍 **Map & Route Integration**: Integrate Google Maps or Leaflet API to visually plan routes on the dashboard.
--   🔔 **Real-Time Notifications**: Push notifications for new expense splits, poll creations, or trip updates.
--   📴 **Offline Sync**: Enable service workers to store itineraries offline and sync changes when connection resumes.
+-    **In-App Messaging**: Real-time canvas chat box for crew members to coordinate.
+-    **Map & Route Integration**: Integrate Google Maps or Leaflet API to visually plan routes on the dashboard.
+-    **Real-Time Notifications**: Push notifications for new expense splits, poll creations, or trip updates.
+-    **Offline Sync**: Enable service workers to store itineraries offline and sync changes when connection resumes.
 
 ---
-
-## 👥 Authors
-
-Created with ❤️ for travelers, explorers, and adventure squads.
