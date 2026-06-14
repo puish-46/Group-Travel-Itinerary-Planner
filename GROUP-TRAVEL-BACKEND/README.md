@@ -139,13 +139,3 @@ npm run dev
 ```bash
 npm start
 ```
-
----
-
-##  Deployment Notes (Render hosting)
-When hosting the API server on **Render**:
-1.  Connect your GitHub repository.
-2.  Set the **Root Directory** setting to: `GROUP-TRAVEL-BACKEND`.
-3.  Set the **Build Command** setting to: `npm install`.
-4.  Set the **Start Command** setting to: `npm start`.
-5.  Add all environment variables (`DB_URL`, `JWT_SECRET`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`) under Render's Environment settings.
