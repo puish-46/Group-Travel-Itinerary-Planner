@@ -120,20 +120,6 @@ Ensure you have node installed:
 
 ---
 
-##  Screenshots
-
-*Placeholders for upcoming application views:*
-
-| Landing Page | Trip Dashboard |
-| :---: | :---: |
-| ![Landing Page Placeholder](https://via.placeholder.com/600x400?text=The+Crew+Canvas+-+Landing+Page) | ![Dashboard Placeholder](https://via.placeholder.com/600x400?text=The+Crew+Canvas+-+Dashboard) |
-
-| Expenses & Splitter | Day-by-Day Itineraries |
-| :---: | :---: |
-| ![Expenses Page Placeholder](https://via.placeholder.com/600x400?text=The+Crew+Canvas+-+Expenses) | ![Itinerary Page Placeholder](https://via.placeholder.com/600x400?text=The+Crew+Canvas+-+Itineraries) |
-
----
-
 ##  Future Enhancements
 
 -    **In-App Messaging**: Real-time canvas chat box for crew members to coordinate.
