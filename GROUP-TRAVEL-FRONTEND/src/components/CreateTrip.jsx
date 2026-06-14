@@ -41,56 +41,56 @@ const CreateTrip = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 p-6">
-      <div className="max-w-xl w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl relative">
+    <div className="min-h-screen flex items-center justify-center bg-bg-beige p-6">
+      <div className="max-w-xl w-full bg-white border border-slate-200 p-8 rounded-3xl shadow-xl relative">
         <button
           onClick={() => navigate('/')}
-          className="absolute top-6 left-6 text-slate-400 hover:text-white flex items-center gap-1.5 text-sm transition-colors cursor-pointer"
+          className="absolute top-6 left-6 text-text-muted hover:text-primary flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back
         </button>
 
         <div className="text-center mt-6">
-          <h2 className="text-3xl font-extrabold text-white tracking-tight">Create Trip</h2>
-          <p className="mt-2 text-sm text-slate-400">Plan a new group travel itinerary</p>
+          <h2 className="text-3xl font-black text-text-dark tracking-tight">Create Trip Canvas</h2>
+          <p className="mt-2 text-sm text-text-muted font-medium">Plan a new group travel route and itinerary</p>
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {(error || validationError) && (
-            <div className="bg-red-500/20 border border-red-500/50 text-red-200 text-sm p-3 rounded-lg text-center">
+            <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg text-center font-medium">
               {validationError || error}
             </div>
           )}
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="tripName" className="block text-sm font-medium text-slate-300 mb-1">
+              <label htmlFor="tripName" className="block text-xs font-bold text-text-dark mb-1">
                 Trip Name
               </label>
               <input
                 id="tripName"
                 type="text"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-slate-700 placeholder-slate-500 text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="e.g. Goa Summer Bash"
+                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
+                placeholder="e.g. Mountain Expedition 2026"
                 value={tripName}
                 onChange={(e) => setTripName(e.target.value)}
               />
             </div>
 
             <div>
-              <label htmlFor="destination" className="block text-sm font-medium text-slate-300 mb-1">
+              <label htmlFor="destination" className="block text-xs font-bold text-text-dark mb-1">
                 Destination
               </label>
               <input
                 id="destination"
                 type="text"
                 required
-                className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-slate-700 placeholder-slate-500 text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="e.g. Goa, India"
+                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
+                placeholder="e.g. Alps, Switzerland"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
               />
@@ -98,28 +98,28 @@ const CreateTrip = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="startDate" className="block text-sm font-medium text-slate-300 mb-1">
+                <label htmlFor="startDate" className="block text-xs font-bold text-text-dark mb-1">
                   Start Date
                 </label>
                 <input
                   id="startDate"
                   type="date"
                   required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-slate-700 text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-slate-300"
+                  className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
                 />
               </div>
 
               <div>
-                <label htmlFor="endDate" className="block text-sm font-medium text-slate-300 mb-1">
+                <label htmlFor="endDate" className="block text-xs font-bold text-text-dark mb-1">
                   End Date
                 </label>
                 <input
                   id="endDate"
                   type="date"
                   required
-                  className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-slate-700 text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-slate-300"
+                  className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                 />
@@ -127,14 +127,14 @@ const CreateTrip = () => {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-slate-300 mb-1">
+              <label htmlFor="description" className="block text-xs font-bold text-text-dark mb-1">
                 Description
               </label>
               <textarea
                 id="description"
                 rows="3"
-                className="appearance-none rounded-lg relative block w-full px-3 py-3 border border-slate-700 placeholder-slate-500 text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="What is the purpose or schedule of the trip?"
+                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
+                placeholder="What is the adventure focus or general goal?"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -145,7 +145,7 @@ const CreateTrip = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors disabled:opacity-50 cursor-pointer"
+              className="group relative w-full flex justify-center py-3.5 px-4 text-sm font-bold rounded-xl text-white bg-accent hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all disabled:opacity-50 cursor-pointer shadow-md shadow-accent/25 hover:shadow-accent/40"
             >
               {loading ? (
                 <span className="flex items-center space-x-2">
@@ -153,9 +153,9 @@ const CreateTrip = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                  <span>Creating Trip...</span>
+                  <span>Creating Canvas...</span>
                 </span>
-              ) : 'Create Trip'}
+              ) : 'Create Canvas'}
             </button>
           </div>
         </form>
