@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Compass, Mail, Lock, Loader2 } from 'lucide-react';
 import useAuthStore from '../store/authStore.js';
 
 const Login = () => {
@@ -27,50 +28,64 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bg-beige px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white border border-slate-200 p-8 rounded-3xl shadow-xl">
-        <div>
-          <h2 className="mt-4 text-center text-3xl font-black text-text-dark tracking-tight">
+    <div className="min-h-screen flex items-center justify-center bg-bg-beige px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-md w-full bg-white border border-slate-200/85 p-8 sm:p-10 rounded-2xl shadow-lg space-y-8 hover:shadow-xl transition-shadow duration-300">
+        <div className="text-center space-y-2">
+          <div className="mx-auto h-12 w-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
+            <Compass className="w-6 h-6 text-white" />
+          </div>
+          <h2 className="text-3xl font-extrabold text-text-dark tracking-tight">
             Welcome Back
           </h2>
-          <p className="mt-2 text-center text-sm text-text-muted font-medium">
+          <p className="text-sm text-text-muted font-medium">
             Sign in to access your travel itineraries
           </p>
         </div>
         
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {(error || validationError) && (
-            <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg text-center font-medium">
+            <div className="bg-red-50 border border-red-200 text-red-650 text-xs p-3.5 rounded-xl text-center font-bold">
               {validationError || error}
             </div>
           )}
 
-          <div className="rounded-md space-y-4">
-            <div>
-              <label htmlFor="email-address" className="sr-only">Email address</label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                required
-                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                placeholder="Email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label htmlFor="email-address" className="text-xs font-bold text-text-dark">Email address</label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  required
+                  className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            
+            <div className="space-y-1">
+              <label htmlFor="password" className="text-xs font-bold text-text-dark">Password</label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                  <Lock className="h-4 w-4" />
+                </span>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
             </div>
           </div>
 
@@ -78,15 +93,12 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3.5 px-4 text-sm font-bold rounded-xl text-white bg-accent hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all disabled:opacity-50 cursor-pointer shadow-md shadow-accent/25 hover:shadow-accent/40"
+              className="group relative w-full flex justify-center py-3.5 px-4 text-sm font-bold rounded-xl text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 disabled:opacity-50 cursor-pointer shadow-md shadow-primary/20 hover:shadow-primary/30"
             >
               {loading ? (
                 <span className="flex items-center space-x-2">
-                  <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  <span>Logging in...</span>
+                  <Loader2 className="animate-spin h-4 w-4 text-white" />
+                  <span>Signing In...</span>
                 </span>
               ) : 'Sign In'}
             </button>

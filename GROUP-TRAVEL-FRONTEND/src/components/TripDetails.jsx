@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ArrowLeft, Trash2, MapPin, Calendar, User, Users, Plus, Loader2 } from 'lucide-react';
 import useTripStore from '../store/tripStore.js';
 import useAuthStore from '../store/authStore.js';
 import Itinerary from './Itinerary.jsx';
@@ -75,10 +76,7 @@ const TripDetails = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-bg-beige flex items-center justify-center">
-        <svg className="animate-spin h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24">
-          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-        </svg>
+        <Loader2 className="animate-spin h-10 w-10 text-primary" />
       </div>
     );
   }
@@ -86,12 +84,12 @@ const TripDetails = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-bg-beige flex flex-col items-center justify-center p-6 text-center">
-        <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-4 rounded-xl max-w-md mb-6 font-medium">
+        <div className="bg-red-50 border border-red-200 text-red-650 text-xs p-4 rounded-xl max-w-md mb-6 font-medium">
           {error}
         </div>
         <button
           onClick={() => navigate('/')}
-          className="px-6 py-3 font-bold text-sm rounded-xl bg-primary hover:bg-primary-hover text-white transition-colors cursor-pointer"
+          className="px-6 py-3 font-bold text-sm rounded-xl bg-primary hover:bg-primary-hover text-white shadow-md shadow-primary/20 transition-all duration-300 cursor-pointer"
         >
           Back to Dashboard
         </button>
@@ -105,7 +103,7 @@ const TripDetails = () => {
         <p className="text-text-muted text-lg mb-6 font-medium">No trip details loaded.</p>
         <button
           onClick={() => navigate('/')}
-          className="px-6 py-3 font-bold text-sm rounded-xl bg-primary hover:bg-primary-hover text-white transition-colors cursor-pointer"
+          className="px-6 py-3 font-bold text-sm rounded-xl bg-primary hover:bg-primary-hover text-white shadow-md shadow-primary/20 transition-all duration-300 cursor-pointer"
         >
           Back to Dashboard
         </button>
@@ -114,64 +112,54 @@ const TripDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-bg-beige text-text-dark p-6">
+    <div className="min-h-screen bg-bg-beige text-text-dark p-4 sm:p-6 pb-16">
       <div className="max-w-4xl mx-auto">
         {/* Top bar with back and delete actions */}
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={() => navigate('/')}
-            className="text-text-muted hover:text-primary flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer"
+            className="text-text-muted hover:text-primary flex items-center gap-1.5 text-xs font-bold transition-all duration-300 cursor-pointer"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
+            <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </button>
           
           {isCreator && (
             <button
               onClick={handleDelete}
-              className="px-4 py-2 text-xs font-bold rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-250 transition-colors cursor-pointer flex items-center gap-1.5"
+              className="px-4 py-2.5 text-xs font-bold rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200/60 transition-all duration-300 cursor-pointer flex items-center gap-1.5"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
+              <Trash2 className="w-3.5 h-3.5" />
               Delete Expedition
             </button>
           )}
         </div>
 
         {/* Trip Card details banner */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden mb-8">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-10 shadow-sm relative overflow-hidden mb-8">
           <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-primary/10 text-primary mb-6">
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            </svg>
+            <MapPin className="w-3.5 h-3.5 text-primary" />
             {selectedTrip.destination}
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-black text-text-dark mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-text-dark mb-4 tracking-tight leading-tight">
             {selectedTrip.tripName}
           </h2>
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-text-muted text-sm mb-6 border-b border-slate-100 pb-6 font-medium">
             <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <Calendar className="w-4 h-4 text-slate-400" />
               <span>{formatDate(selectedTrip.startDate)}</span>
             </div>
             <div className="text-slate-300 hidden sm:block">•</div>
             <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <Calendar className="w-4 h-4 text-slate-400" />
               <span>{formatDate(selectedTrip.endDate)}</span>
             </div>
           </div>
 
-          <h3 className="text-lg font-bold text-text-dark mb-2">Trip Description</h3>
-          <p className="text-text-muted leading-relaxed mb-8 font-medium">
+          <h3 className="text-base font-bold text-text-dark mb-2">Trip Description</h3>
+          <p className="text-text-muted text-sm leading-relaxed mb-8 font-medium">
             {selectedTrip.description || 'No description has been added to this trip yet.'}
           </p>
 
@@ -180,8 +168,8 @@ const TripDetails = () => {
               <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-3">
                 Organizer
               </h4>
-              <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200/80">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-accent to-yellow-500 flex items-center justify-center text-white font-bold text-sm">
+              <div className="flex items-center gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200/60">
+                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
                   {selectedTrip.createdBy?.name?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div>
@@ -199,9 +187,9 @@ const TripDetails = () => {
                 {selectedTrip.members?.map((member) => (
                   <div
                     key={member._id}
-                    className="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200/80"
+                    className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/60"
                   >
-                    <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-xs text-primary font-bold shrink-0">
+                    <div className="h-8 w-8 rounded-full bg-primary/5 flex items-center justify-center text-xs text-primary font-bold shrink-0">
                       {member.name?.charAt(0).toUpperCase() || 'M'}
                     </div>
                     <div className="truncate">
@@ -222,12 +210,12 @@ const TripDetails = () => {
                       placeholder="Add member by email"
                       value={memberEmail}
                       onChange={(e) => setMemberEmail(e.target.value)}
-                      className="flex-grow px-3 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary text-xs font-medium"
+                      className="flex-grow px-3.5 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-xs font-semibold"
                     />
                     <button
                       type="submit"
                       disabled={addMemberLoading}
-                      className="px-4 py-2.5 text-xs font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-sm transition-colors cursor-pointer disabled:opacity-50"
+                      className="px-4 py-2.5 text-xs font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-sm transition-all duration-300 cursor-pointer disabled:opacity-50"
                     >
                       {addMemberLoading ? 'Adding...' : 'Add'}
                     </button>
@@ -242,16 +230,16 @@ const TripDetails = () => {
         </div>
 
         {/* Feature Tabs section */}
-        <div className="mt-12 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <div className="mt-12 bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="flex border-b border-slate-100 mb-6 overflow-x-auto gap-2">
             {['itinerary', 'polls', 'expenses', 'gallery'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-3 font-bold text-sm border-b-2 capitalize transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-5 py-3 font-bold text-sm border-b-2 capitalize transition-all cursor-pointer whitespace-nowrap relative ${
                   activeTab === tab
-                    ? 'border-primary text-primary'
-                    : 'border-transparent text-text-muted hover:text-primary'
+                    ? 'border-accent text-primary'
+                    : 'border-transparent text-text-muted hover:text-primary hover:border-slate-200'
                 }`}
               >
                 {tab}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Compass, Calendar, MapPin, AlignLeft, Loader2 } from 'lucide-react';
 import useTripStore from '../store/tripStore.js';
 
 const CreateTrip = () => {
@@ -41,103 +42,131 @@ const CreateTrip = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bg-beige p-6">
-      <div className="max-w-xl w-full bg-white border border-slate-200 p-8 rounded-3xl shadow-xl relative">
+    <div className="min-h-screen flex items-center justify-center bg-bg-beige p-4 sm:p-6 py-12">
+      <div className="max-w-xl w-full bg-white border border-slate-200/85 p-8 sm:p-10 rounded-2xl shadow-lg relative space-y-6 hover:shadow-xl transition-shadow duration-300">
+        
+        {/* Back Button */}
         <button
           onClick={() => navigate('/')}
-          className="absolute top-6 left-6 text-text-muted hover:text-primary flex items-center gap-1.5 text-xs font-bold transition-colors cursor-pointer"
+          className="absolute top-6 left-6 text-text-muted hover:text-primary flex items-center gap-1.5 text-xs font-bold transition-all duration-300 cursor-pointer"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
+          <ArrowLeft className="w-4 h-4" />
           Back
         </button>
 
-        <div className="text-center mt-6">
-          <h2 className="text-3xl font-black text-text-dark tracking-tight">Create Trip Canvas</h2>
-          <p className="mt-2 text-sm text-text-muted font-medium">Plan a new group travel route and itinerary</p>
+        <div className="text-center space-y-2 mt-6">
+          <div className="mx-auto h-12 w-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
+            <Compass className="w-6 h-6 text-white" />
+          </div>
+          <h2 className="text-3xl font-extrabold text-text-dark tracking-tight">Create Trip Canvas</h2>
+          <p className="text-sm text-text-muted font-medium font-medium">Plan a new group travel route and itinerary</p>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {(error || validationError) && (
-            <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg text-center font-medium">
+            <div className="bg-red-50 border border-red-200 text-red-650 text-xs p-3.5 rounded-xl text-center font-bold">
               {validationError || error}
             </div>
           )}
 
           <div className="space-y-4">
-            <div>
-              <label htmlFor="tripName" className="block text-xs font-bold text-text-dark mb-1">
+            <div className="space-y-1">
+              <label htmlFor="tripName" className="block text-xs font-bold text-text-dark">
                 Trip Name
               </label>
-              <input
-                id="tripName"
-                type="text"
-                required
-                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                placeholder="e.g. Mountain Expedition 2026"
-                value={tripName}
-                onChange={(e) => setTripName(e.target.value)}
-              />
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                  <Compass className="h-4 w-4" />
+                </span>
+                <input
+                  id="tripName"
+                  type="text"
+                  required
+                  className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                  placeholder="e.g. Mountain Expedition 2026"
+                  value={tripName}
+                  onChange={(e) => setTripName(e.target.value)}
+                />
+              </div>
             </div>
 
-            <div>
-              <label htmlFor="destination" className="block text-xs font-bold text-text-dark mb-1">
+            <div className="space-y-1">
+              <label htmlFor="destination" className="block text-xs font-bold text-text-dark">
                 Destination
               </label>
-              <input
-                id="destination"
-                type="text"
-                required
-                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                placeholder="e.g. Alps, Switzerland"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
-              />
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <input
+                  id="destination"
+                  type="text"
+                  required
+                  className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                  placeholder="e.g. Alps, Switzerland"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="startDate" className="block text-xs font-bold text-text-dark mb-1">
+              <div className="space-y-1">
+                <label htmlFor="startDate" className="block text-xs font-bold text-text-dark">
                   Start Date
                 </label>
-                <input
-                  id="startDate"
-                  type="date"
-                  required
-                  className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                    <Calendar className="h-4 w-4" />
+                  </span>
+                  <input
+                    id="startDate"
+                    type="date"
+                    required
+                    className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                </div>
               </div>
 
-              <div>
-                <label htmlFor="endDate" className="block text-xs font-bold text-text-dark mb-1">
+              <div className="space-y-1">
+                <label htmlFor="endDate" className="block text-xs font-bold text-text-dark">
                   End Date
                 </label>
-                <input
-                  id="endDate"
-                  type="date"
-                  required
-                  className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                />
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-muted">
+                    <Calendar className="h-4 w-4" />
+                  </span>
+                  <input
+                    id="endDate"
+                    type="date"
+                    required
+                    className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
 
-            <div>
-              <label htmlFor="description" className="block text-xs font-bold text-text-dark mb-1">
+            <div className="space-y-1">
+              <label htmlFor="description" className="block text-xs font-bold text-text-dark">
                 Description
               </label>
-              <textarea
-                id="description"
-                rows="3"
-                className="appearance-none rounded-xl relative block w-full px-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm font-medium"
-                placeholder="What is the adventure focus or general goal?"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
+              <div className="relative">
+                <span className="absolute top-3 left-0 pl-3.5 flex items-start pointer-events-none text-text-muted">
+                  <AlignLeft className="h-4 w-4" />
+                </span>
+                <textarea
+                  id="description"
+                  rows="3"
+                  className="appearance-none rounded-xl relative block w-full pl-10 pr-3.5 py-3 border border-slate-200 placeholder-slate-400 text-text-dark bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-semibold transition-all"
+                  placeholder="What is the adventure focus or general goal?"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
             </div>
           </div>
 
@@ -145,14 +174,11 @@ const CreateTrip = () => {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3.5 px-4 text-sm font-bold rounded-xl text-white bg-accent hover:bg-accent-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all disabled:opacity-50 cursor-pointer shadow-md shadow-accent/25 hover:shadow-accent/40"
+              className="group relative w-full flex justify-center py-3.5 px-4 text-sm font-bold rounded-xl text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 disabled:opacity-50 cursor-pointer shadow-md shadow-primary/20 hover:shadow-primary/30"
             >
               {loading ? (
                 <span className="flex items-center space-x-2">
-                  <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
+                  <Loader2 className="animate-spin h-4 w-4 text-white" />
                   <span>Creating Canvas...</span>
                 </span>
               ) : 'Create Canvas'}

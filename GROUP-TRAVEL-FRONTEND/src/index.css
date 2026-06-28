@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2E7D32;
-  --color-primary-hover: #1b5e20;
-  --color-secondary: #546E7A;
-  --color-secondary-hover: #37474F;
-  --color-accent: #FB8C00;
-  --color-accent-hover: #E65100;
-  --color-bg-beige: #FAF7F2;
+  --font-sans: 'Outfit', sans-serif;
+
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-secondary: #475569;
+  --color-secondary-hover: #334155;
+  --color-accent: #F97316;
+  --color-accent-hover: #EA580C;
+  --color-bg-beige: #F8FAFC;
   --color-bg-card: #FFFFFF;
-  --color-text-dark: #263238;
-  --color-text-muted: #546E7A;
+  --color-text-dark: #0F172A;
+  --color-text-muted: #64748B;
+  --color-success: #22C55E;
+  --color-error: #EF4444;
 }

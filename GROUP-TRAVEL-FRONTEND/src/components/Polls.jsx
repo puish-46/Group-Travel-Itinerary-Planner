@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BarChart3, Trash2, Plus, Loader2, Vote, Check } from 'lucide-react';
 import useAuthStore from '../store/authStore.js';
 
 const Polls = ({ tripId }) => {
@@ -115,29 +116,37 @@ const Polls = ({ tripId }) => {
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
-      <h3 className="text-2xl font-black text-text-dark mb-6">Group Polls</h3>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h3 className="text-xl font-bold text-text-dark flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-primary" />
+            Group Polls
+          </h3>
+          <p className="text-xs text-text-muted">Cast votes on choices and decide together</p>
+        </div>
+      </div>
 
       {/* Create Poll Form */}
       {isAuthenticated && (
-        <form onSubmit={handleCreatePoll} className="bg-slate-50 border border-slate-200 p-5 rounded-2xl mb-8">
-          <h4 className="text-sm font-bold text-text-dark uppercase tracking-wider mb-4">Create New Poll</h4>
+        <form onSubmit={handleCreatePoll} className="bg-slate-50 border border-slate-200/85 p-5 sm:p-6 rounded-xl">
+          <h4 className="text-xs font-bold text-text-dark uppercase tracking-wider mb-4">Create New Poll</h4>
           
           <div className="space-y-4">
-            <div>
-              <label className="block text-xs font-bold text-text-muted mb-1">Question</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-text-muted">Question</label>
               <input
                 type="text"
                 required
                 placeholder="e.g. Which base camp should we start from?"
-                className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-white focus:outline-none focus:ring-2 focus:ring-primary text-xs font-medium"
+                className="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-xs font-semibold"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-bold text-text-muted mb-1">Options</label>
+            <div className="space-y-1">
+              <label className="block text-xs font-bold text-text-muted">Options</label>
               <div className="space-y-2">
                 {options.map((option, index) => (
                   <div key={index} className="flex items-center gap-2">
@@ -145,7 +154,7 @@ const Polls = ({ tripId }) => {
                       type="text"
                       required
                       placeholder={`Option ${index + 1}`}
-                      className="flex-1 px-3 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-white focus:outline-none focus:ring-2 focus:ring-primary text-xs font-medium"
+                      className="flex-1 px-3.5 py-2.5 border border-slate-200 rounded-xl text-text-dark bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-xs font-semibold"
                       value={option}
                       onChange={(e) => handleOptionChange(index, e.target.value)}
                     />
@@ -153,11 +162,9 @@ const Polls = ({ tripId }) => {
                       <button
                         type="button"
                         onClick={() => handleRemoveOptionField(index)}
-                        className="p-2 text-slate-400 hover:text-red-600 transition-colors cursor-pointer"
+                        className="p-2 text-slate-400 hover:text-red-650 transition-all duration-300 cursor-pointer"
                       >
-                        <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     )}
                   </div>
@@ -167,18 +174,16 @@ const Polls = ({ tripId }) => {
               <button
                 type="button"
                 onClick={handleAddOptionField}
-                className="mt-3 text-xs font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1 cursor-pointer"
+                className="mt-2 text-xs font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-                </svg>
+                <Plus className="w-4 h-4" />
                 Add Option
               </button>
             </div>
 
             <button
               type="submit"
-              className="w-full px-4 py-2.5 text-xs font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-sm transition-colors cursor-pointer"
+              className="w-full px-4 py-3 text-xs font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-md shadow-accent/15 transition-all duration-300 cursor-pointer"
             >
               Create Poll
             </button>
@@ -187,22 +192,20 @@ const Polls = ({ tripId }) => {
       )}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-lg text-center mb-6 font-medium">
+        <div className="bg-red-50 border border-red-200 text-red-650 text-xs p-3.5 rounded-xl text-center font-bold">
           {error}
         </div>
       )}
 
       {loading ? (
-        <div className="flex justify-center items-center py-8">
-          <svg className="animate-spin h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-          </svg>
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="animate-spin h-8 w-8 text-primary" />
         </div>
       ) : polls.length === 0 ? (
-        <p className="text-text-muted text-center py-6 bg-slate-50 border border-dashed border-slate-200 rounded-2xl font-medium">
-          No polls created yet.
-        </p>
+        <div className="text-center py-12 bg-slate-50/50 border border-dashed border-slate-200 rounded-2xl">
+          <Vote className="w-10 h-10 text-slate-350 mx-auto mb-3" />
+          <p className="text-text-muted text-sm font-medium">No polls created yet.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 gap-6">
           {polls.map((poll) => {
@@ -210,23 +213,21 @@ const Polls = ({ tripId }) => {
             const totalVotes = poll.options.reduce((sum, opt) => sum + opt.votes, 0);
 
             return (
-              <div key={poll._id} className="bg-white border border-slate-200 rounded-2xl p-5 relative shadow-sm hover:border-primary/20 transition-all">
+              <div key={poll._id} className="bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 relative">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h4 className="text-base font-black text-text-dark leading-snug">{poll.question}</h4>
+                    <h4 className="text-base font-bold text-text-dark leading-snug">{poll.question}</h4>
                     <p className="text-xs text-text-muted mt-1 font-medium">
-                      Leader: <span className="text-secondary font-bold">{poll.createdBy?.name || 'Unknown'}</span>
+                      Asked by: <span className="text-primary font-bold">{poll.createdBy?.name || 'Unknown'}</span>
                     </p>
                   </div>
                   {isPollCreator && (
                     <button
                       onClick={() => handleDeletePoll(poll._id)}
-                      className="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-600 transition-colors cursor-pointer"
+                      className="p-1.5 rounded-xl hover:bg-red-50 text-slate-400 hover:text-red-650 transition-all duration-300 cursor-pointer"
                       title="Delete Poll"
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                      <Trash2 className="w-4.5 h-4.5" />
                     </button>
                   )}
                 </div>
@@ -237,19 +238,19 @@ const Polls = ({ tripId }) => {
                     const percentage = totalVotes > 0 ? Math.round((opt.votes / totalVotes) * 100) : 0;
 
                     return (
-                      <div key={opt._id} className="relative group">
+                      <div key={opt._id} className="relative group overflow-hidden rounded-xl border border-slate-200/85">
                         <div
-                          className="absolute inset-y-0 left-0 bg-primary/10 rounded-xl transition-all duration-500 pointer-events-none"
+                          className="absolute inset-y-0 left-0 bg-primary/5 transition-all duration-500 pointer-events-none"
                           style={{ width: `${percentage}%` }}
                         ></div>
-                        <div className="relative flex justify-between items-center border border-slate-200/80 px-4 py-3 rounded-xl hover:border-primary/30 transition-all gap-4">
-                          <span className="text-sm text-text-dark font-semibold">{opt.text}</span>
+                        <div className="relative flex justify-between items-center px-4 py-3.5 transition-all gap-4">
+                          <span className="text-xs text-text-dark font-bold">{opt.text}</span>
                           <div className="flex items-center gap-3">
-                            <span className="text-xs text-text-muted font-bold">{opt.votes} votes ({percentage}%)</span>
+                            <span className="text-[11px] text-text-muted font-semibold">{opt.votes} votes ({percentage}%)</span>
                             {isAuthenticated && (
                               <button
                                 onClick={() => handleVote(poll._id, index)}
-                                className="px-3 py-1.5 text-[10px] font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-sm transition-colors cursor-pointer"
+                                className="px-3 py-1.5 text-[10px] font-bold text-white bg-primary hover:bg-primary-hover rounded-xl shadow-sm transition-all duration-300 cursor-pointer"
                               >
                                 Vote
                               </button>
